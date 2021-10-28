@@ -19,29 +19,24 @@ void AvancerPID(uint32_t nbrPulse)
     uint16_t compteDelai = 0;
     while(compteRightTotal < nbrPulse)
     {
-        //Serial.print("Compte right ");
-        //Serial.println(compteRightTotal,DEC);
         if (compteRightTotal > (nbrPulse-700))
         {
             vitesse = 0.1;
             MOTOR_SetSpeed(RIGHT,vitesse);
-            //Serial.println("Vitesse 0.1");
         }
         else if ((compteRightTotal > 1400) && (compteRightTotal < (nbrPulse-1400)))
         {
             vitesse = 0.5;
             MOTOR_SetSpeed(RIGHT,vitesse);
-            //Serial.println("Vitesse 0.5");
         }
         else if ((compteRightTotal > (nbrPulse-1400)) || (compteRightTotal > 700))
         {
             vitesse = 0.3;
             MOTOR_SetSpeed(RIGHT,vitesse);
-            //Serial.println("Vitesse 0.3");
         }
 
         compteDelai++;
-        if(compteDelai > 10)
+        if(compteDelai > 20)
         {
             compteRight = ENCODER_ReadReset(RIGHT);
             compteRightTotal += compteRight;
@@ -50,7 +45,7 @@ void AvancerPID(uint32_t nbrPulse)
             correction_P = compteRight - compteLeft;
             correction_I += correction_P;
             correction_D = correction_P - ancienneCorrection;
-            MOTOR_SetSpeed(LEFT,(vitesse + 0.5*correction_P + 0.4*correction_I + 0.2*correction_D));
+            MOTOR_SetSpeed(LEFT,(vitesse + (0.2*correction_P + 0.1*correction_I + 0.1*correction_D)));
             compteDelai = 0;
         }
     }
