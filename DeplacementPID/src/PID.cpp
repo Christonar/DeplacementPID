@@ -1,6 +1,14 @@
 #include "PID.h"
 
 /* #################################################
+Fichier de fonctions de déplacement comprenant 
+une correction par PID
+################################################# */
+
+
+/* METTRE CE FICHIER DANS LE DOSSIER "SRC"*/
+
+/* #################################################
 Description : Fonction permettant de faire 
 avancer les 2 roues du robot d'un certain nombre 
 de pulse à la même vitesse
