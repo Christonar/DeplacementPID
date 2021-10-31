@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
+/* METTRE CE FICHIER DANS LE DOSSIER "INCLUDE"*/
+
 void AvancerPID(uint32_t nbrPulse);
 void AvancerDroite(uint32_t nbrPulse, float difference);
 void AvancerGauche(uint32_t nbrPulse, float difference);
